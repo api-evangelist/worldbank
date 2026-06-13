@@ -1,0 +1,64 @@
+name: World Bank API Rate Limits
+description: >-
+  World Bank APIs do not publish explicit per-second or per-minute request rate
+  limits. However, several technical constraints apply per request type and URL
+  structure. The APIs are designed for development data access and not
+  guaranteed for high-frequency production traffic. Developers are encouraged
+  to cache results locally to reduce server load.
+limits:
+  - api: Indicators API
+    type: URL Length
+    constraint: Maximum 1,500 characters between slashes in URL path
+    notes: Exceeding this limit will result in an error response
+  - api: Indicators API
+    type: URL Length
+    constraint: Maximum 4,000 characters for entire URL
+    notes: Keep query parameters and filters within this bound
+  - api: Indicators API
+    type: Indicators Per Request
+    constraint: Maximum 60 indicators per request (semicolon-separated)
+    notes: Split large indicator queries across multiple requests
+  - api: Indicators API
+    type: Pagination Default
+    constraint: Default 50 records per page; configurable via per_page parameter
+    notes: Use per_page and page parameters for bulk data retrieval
+  - api: SDMX API
+    type: Data Points Per Call
+    constraint: Maximum 15,000 data points per call including null values
+    notes: Requests exceeding this limit will fail; narrow date range or country scope
+  - api: Finances API
+    type: Records Per Request
+    constraint: Maximum 1,000 records per request
+    notes: Use pagination with skip parameter to retrieve full datasets
+  - api: Data Catalog API
+    type: Records Per Request
+    constraint: Default maximum 100 records per request for DatasetList
+    notes: Use $top and $skip OData parameters for pagination
+  - api: All APIs
+    type: Authentication
+    constraint: No API key or token required
+    notes: All endpoints are publicly accessible without credentials
+  - api: All APIs
+    type: Uptime
+    constraint: No SLA guarantee - maximum uptime is a goal but not guaranteed
+    notes: Implement local caching and defensive error handling in applications
+best_practices:
+  - Cache API responses locally to reduce repeated requests and handle outages
+  - Use date filters and country filters to narrow query scope
+  - Paginate large result sets using page and per_page parameters
+  - For SDMX, restrict queries to specific countries and date ranges to stay within 15,000 data point limit
+  - Handle HTTP 4xx and 5xx errors gracefully with retry logic
+  - Consult the API Error Codes documentation for specific error handling
+contact:
+  - FN: World Bank Data Help Desk
+    url: https://datahelpdesk.worldbank.org
+    email: data@worldbank.org
+references:
+  - type: Documentation
+    url: https://datahelpdesk.worldbank.org/knowledgebase/articles/898581-api-basic-call-structures
+  - type: Documentation
+    url: https://datahelpdesk.worldbank.org/knowledgebase/articles/902064-development-best-practices
+  - type: Documentation
+    url: https://datahelpdesk.worldbank.org/knowledgebase/articles/898620-api-error-codes
+  - type: Documentation
+    url: https://datahelpdesk.worldbank.org/knowledgebase/articles/1886701-sdmx-api-queries

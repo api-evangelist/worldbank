@@ -1,0 +1,53 @@
+name: World Bank API Plans & Pricing
+description: >-
+  World Bank APIs are freely available to developers, researchers, governments,
+  and the public under Creative Commons Attribution 4.0 International (CC BY 4.0)
+  licensing. There are no subscription tiers, API keys, or payment requirements
+  for accessing the core developer APIs. Commercial use is permitted with
+  attribution.
+plans:
+  - name: Open Access
+    description: >-
+      Full unrestricted access to all World Bank APIs at no cost. No registration,
+      API key, or authentication is required. Developers can directly call endpoints
+      for the Indicators API, Data Catalog API, Projects API, Finances API, and
+      SDMX API without any account setup.
+    price: 0
+    currency: USD
+    unit: month
+    features:
+      - name: Indicators API Access
+        description: Access to nearly 16,000 time series development indicators
+        included: true
+      - name: Data Catalog API Access
+        description: Browse and download thousands of development datasets
+        included: true
+      - name: Projects API Access
+        description: Query World Bank operational project data
+        included: true
+      - name: Finances API Access
+        description: Access financial data including loans, credits, and budgets
+        included: true
+      - name: SDMX API Access
+        description: SDMX-formatted access to World Development Indicators
+        included: true
+      - name: No Authentication Required
+        description: All APIs are publicly accessible without API keys or tokens
+        included: true
+      - name: Commercial Use
+        description: Permitted with CC BY 4.0 attribution
+        included: true
+      - name: JSON and XML Formats
+        description: Multiple response format support
+        included: true
+notes:
+  - Some datasets may include third-party data with different licensing restrictions
+  - Attribution required for all uses - cite as "The World Bank: [Dataset Name]"
+  - World Bank reserves the right to modify or discontinue APIs without notice
+  - No SLA or uptime guarantee is provided for API availability
+  - Enterprise or bulk data agreements may be available via data@worldbank.org
+contact:
+  - FN: World Bank Data Help Desk
+    url: https://datahelpdesk.worldbank.org
+    email: data@worldbank.org
+url: https://www.worldbank.org/en/about/legal/terms-of-use-for-datasets

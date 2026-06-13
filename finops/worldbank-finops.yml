@@ -1,0 +1,74 @@
+name: World Bank API FinOps
+description: >-
+  Financial operations analysis for World Bank API consumption. All World Bank
+  APIs are free of charge under the CC BY 4.0 open data license. There are no
+  direct API costs, usage-based pricing, or subscription fees. FinOps
+  considerations center on infrastructure costs for consuming applications and
+  data storage for locally cached datasets.
+cost_model:
+  type: Free / Open Data
+  api_fees: 0
+  currency: USD
+  license: Creative Commons Attribution 4.0 International (CC BY 4.0)
+  authentication_cost: None - no API key purchase required
+  subscription_cost: None - no subscription tiers
+direct_costs:
+  - category: API Access
+    cost: 0
+    notes: All World Bank APIs are free with no usage-based fees
+  - category: Registration / API Key
+    cost: 0
+    notes: No registration or API key required for any endpoint
+  - category: Data Downloads
+    cost: 0
+    notes: Bulk CSV, XML, and Excel downloads are free via Data Catalog API
+indirect_costs:
+  - category: Compute
+    notes: >-
+      Consumer application hosting costs for processing World Bank API
+      responses. Cost varies by cloud provider and usage volume.
+  - category: Storage
+    notes: >-
+      Local caching of World Bank datasets recommended by documentation to
+      handle outages. Storage cost depends on dataset size and provider.
+      World Development Indicators database is large; selective caching
+      is advisable.
+  - category: Bandwidth
+    notes: >-
+      Inbound data transfer costs may apply depending on cloud provider.
+      World Bank API responses can be large for broad indicator queries;
+      pagination reduces per-request payload size.
+  - category: Engineering
+    notes: >-
+      Developer time for integration, error handling, pagination logic,
+      and caching layer implementation. No vendor-specific tooling
+      licensing required.
+optimization_recommendations:
+  - Use pagination (per_page parameter) to retrieve only needed records
+  - Cache indicator data locally since historical values do not change
+  - Filter by specific countries and date ranges rather than pulling global datasets
+  - Use JSON format (format=json) to reduce response payload size vs XML default
+  - For SDMX queries, scope to specific series and countries to stay within 15,000 data point limit
+  - Use mrv (most recent values) parameter to avoid pulling full time series when only current data is needed
+  - Leverage downloadformat=csv for bulk data needs instead of repeated paginated API calls
+budget_considerations:
+  - No vendor invoice or API spend tracking required for World Bank API itself
+  - Monitor application-level infrastructure costs (compute, storage, bandwidth)
+  - No rate limit overage fees - requests that exceed constraints simply fail with errors
+  - Plan for API availability variability; no SLA means potential for unplanned downtime impacting pipelines
+data_licensing:
+  license: CC BY 4.0
+  attribution_required: true
+  attribution_format: "The World Bank: [Dataset Name]: [Data Source]"
+  commercial_use: Permitted with attribution
+  redistribution: Permitted with original license terms
+  contact: data@worldbank.org
+contact:
+  - FN: World Bank Data Help Desk
+    url: https://datahelpdesk.worldbank.org
+    email: data@worldbank.org
+references:
+  - type: Terms of Use
+    url: https://www.worldbank.org/en/about/legal/terms-of-use-for-datasets
+  - type: Developer Overview
+    url: https://datahelpdesk.worldbank.org/knowledgebase/articles/889386-developer-information-overview
