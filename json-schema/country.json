@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/worldbank/json-schema/country.json",
+  "title": "Country",
+  "description": "World Bank country record with geographical and economic classification data.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-3 country code",
+      "example": "USA"
+    },
+    "iso2Code": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code",
+      "minLength": 2,
+      "maxLength": 2,
+      "example": "US"
+    },
+    "name": {
+      "type": "string",
+      "description": "Official country name",
+      "example": "United States"
+    },
+    "region": {
+      "$ref": "#/$defs/ClassificationRef",
+      "description": "World Bank geographic region"
+    },
+    "adminregion": {
+      "$ref": "#/$defs/ClassificationRef",
+      "description": "World Bank administrative region (for developing countries)"
+    },
+    "incomeLevel": {
+      "$ref": "#/$defs/ClassificationRef",
+      "description": "World Bank income level classification"
+    },
+    "lendingType": {
+      "$ref": "#/$defs/ClassificationRef",
+      "description": "World Bank lending type classification"
+    },
+    "capitalCity": {
+      "type": "string",
+      "description": "Name of the capital city",
+      "example": "Washington D.C."
+    },
+    "longitude": {
+      "type": "string",
+      "description": "Longitude of the country centroid",
+      "example": "-95.7129"
+    },
+    "latitude": {
+      "type": "string",
+      "description": "Latitude of the country centroid",
+      "example": "37.0902"
+    }
+  },
+  "required": ["id", "iso2Code", "name"],
+  "$defs": {
+    "ClassificationRef": {
+      "type": "object",
+      "description": "Reference to a World Bank classification category",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Classification code"
+        },
+        "iso2code": {
+          "type": "string",
+          "description": "ISO 2-character code for the classification"
+        },
+        "value": {
+          "type": "string",
+          "description": "Human-readable classification name"
+        }
+      },
+      "required": ["id", "value"]
+    }
+  }
+}

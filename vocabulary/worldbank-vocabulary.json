@@ -1,0 +1,110 @@
+{
+  "vocabulary": {
+    "name": "World Bank API Vocabulary",
+    "description": "Domain vocabulary and terminology used by the World Bank Indicators, Data Catalog, Projects, Finances, and SDMX APIs.",
+    "version": "1.0.0",
+    "source": "https://datahelpdesk.worldbank.org/knowledgebase/articles/889386-developer-information-overview",
+    "terms": [
+      {
+        "term": "indicator",
+        "definition": "A statistical measure used to quantify or monitor development trends. The World Bank maintains nearly 16,000 indicators covering topics from agriculture to energy to health. Each indicator is identified by a unique code (e.g., SP.POP.TOTL for total population).",
+        "example": "SP.POP.TOTL"
+      },
+      {
+        "term": "country_code",
+        "definition": "ISO 3166-1 country codes used to identify countries and territories. The API accepts both 2-letter (alpha-2) codes like 'US' and 3-letter (alpha-3) codes like 'USA'. Special aggregate codes like 'all', 'WLD' (World), and region codes are also supported.",
+        "example": "USA, US, WLD, all"
+      },
+      {
+        "term": "region",
+        "definition": "World Bank geographic region grouping of countries. Regions include East Asia & Pacific (EAS), Europe & Central Asia (ECS), Latin America & Caribbean (LCN), Middle East & North Africa (MEA), North America (NAC), South Asia (SAS), and Sub-Saharan Africa (SSF).",
+        "example": "EAS, ECS, LCN, MEA, NAC, SAS, SSF"
+      },
+      {
+        "term": "income_level",
+        "definition": "World Bank classification of economies by gross national income (GNI) per capita. Categories include High Income (HIC), Upper Middle Income (UMC), Lower Middle Income (LMC), and Low Income (LIC). Updated annually.",
+        "example": "HIC, UMC, LMC, LIC"
+      },
+      {
+        "term": "lending_type",
+        "definition": "World Bank classification of countries by lending eligibility. IBRD (IBD) refers to International Bank for Reconstruction and Development borrowers, IDA (IDA) to International Development Association eligible countries, IDA blend (IDX) to countries eligible for both, and Not Classified (LNX) for high-income countries.",
+        "example": "IBD, IDA, IDX, LNX"
+      },
+      {
+        "term": "mrv",
+        "definition": "Most Recent Value parameter. When specified, returns the N most recent non-empty data values for the indicator rather than values for a specific date range. Useful for getting current data without knowing the exact latest year.",
+        "example": "mrv=5 returns the 5 most recent data points"
+      },
+      {
+        "term": "date_range",
+        "definition": "Time period filter for indicator data. Can be a single year ('2022'), a range ('2010:2022'), a monthly period ('2020M01:2020M12'), or a quarterly period ('2020Q1:2020Q4').",
+        "example": "2010:2022"
+      },
+      {
+        "term": "per_page",
+        "definition": "Number of records to return per API response page. Default is 50. Maximum allowed is 1000. Use in combination with the 'page' parameter for pagination.",
+        "example": "per_page=100"
+      },
+      {
+        "term": "page",
+        "definition": "The page number to retrieve when results span multiple pages. Page numbering starts at 1. Use with 'per_page' to navigate through large result sets.",
+        "example": "page=2"
+      },
+      {
+        "term": "source",
+        "definition": "The World Bank database that provides the data. The main source is World Development Indicators (source id 2). Other sources include Global Financial Development (source id 17) and Human Development Indicators (source id 29).",
+        "example": "source=2 (World Development Indicators)"
+      },
+      {
+        "term": "topic",
+        "definition": "Thematic grouping of World Bank indicators. Topics include Agriculture & Rural Development (1), Aid Effectiveness (2), Economy & Growth (3), Education (4), Energy & Mining (5), Environment (6), Financial Sector (7), Health (8), Infrastructure (9), and others (up to 21 topics).",
+        "example": "topic/3 for Economy & Growth indicators"
+      },
+      {
+        "term": "obs_status",
+        "definition": "Observation status code indicating data quality, coverage, or special conditions. Common values include empty string for normal observations, 'E' for estimated values, 'F' for forecast data, and 'M' for missing data.",
+        "example": "obs_status: E (estimated)"
+      },
+      {
+        "term": "IBRD",
+        "definition": "International Bank for Reconstruction and Development. The World Bank lending arm for middle-income and creditworthy low-income countries providing loans, guarantees, and advisory services.",
+        "example": "IBRD borrowing countries"
+      },
+      {
+        "term": "IDA",
+        "definition": "International Development Association. The World Bank arm providing grants and concessional loans to the world's poorest countries.",
+        "example": "IDA eligible countries"
+      },
+      {
+        "term": "WDI",
+        "definition": "World Development Indicators. The World Bank's primary collection of development data, compiled from officially recognized international sources, covering over 1,400 indicators for 217 economies.",
+        "example": "WDI dataset (source id 2)"
+      },
+      {
+        "term": "SDMX",
+        "definition": "Statistical Data and Metadata eXchange. An international standard for the exchange of statistical data and metadata. The World Bank SDMX API provides WDI data conforming to this standard, supporting interoperability with other statistical agencies.",
+        "example": "SDMX-ML 2.1 format"
+      },
+      {
+        "term": "gap_fill",
+        "definition": "When set to 'Y' and used with the mrv parameter, fills gaps in the data by using the previous non-empty value to ensure a continuous time series is returned.",
+        "example": "gap_fill=Y"
+      },
+      {
+        "term": "frequency",
+        "definition": "The temporal frequency of the returned data. 'Y' for annual data, 'Q' for quarterly data, and 'M' for monthly data. Not all indicators are available at all frequencies.",
+        "example": "frequency=Q"
+      },
+      {
+        "term": "aggregate_code",
+        "definition": "Special country codes representing geographic or economic aggregates. Examples include 'all' for all countries, 'WLD' for the World, 'EAS' for East Asia & Pacific, 'LIC' for Low Income Countries.",
+        "example": "WLD, EAS, HIC, LIC"
+      },
+      {
+        "term": "data_catalog",
+        "definition": "The World Bank Data Catalog is a repository of thousands of development-relevant datasets. The Data Catalog API allows programmatic access to dataset metadata and download resources.",
+        "example": "World Bank Data Catalog API"
+      }
+    ]
+  }
+}

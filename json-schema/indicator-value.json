@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/worldbank/json-schema/indicator-value.json",
+  "title": "IndicatorValue",
+  "description": "A single data point returned by the World Bank Indicators API for a given country and time period.",
+  "type": "object",
+  "properties": {
+    "indicator": {
+      "type": "object",
+      "description": "Reference to the World Bank indicator",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Indicator code (e.g., SP.POP.TOTL, NY.GDP.MKTP.CD)",
+          "example": "SP.POP.TOTL"
+        },
+        "value": {
+          "type": "string",
+          "description": "Human-readable indicator name",
+          "example": "Population, total"
+        }
+      },
+      "required": ["id", "value"]
+    },
+    "country": {
+      "type": "object",
+      "description": "Country reference",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ISO 3166-1 alpha-2 country code",
+          "example": "US"
+        },
+        "value": {
+          "type": "string",
+          "description": "Country name",
+          "example": "United States"
+        }
+      },
+      "required": ["id", "value"]
+    },
+    "countryiso3code": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-3 country code",
+      "example": "USA"
+    },
+    "date": {
+      "type": "string",
+      "description": "Year or period of the data point",
+      "example": "2022"
+    },
+    "value": {
+      "type": ["number", "null"],
+      "description": "Numeric value of the indicator. Null if data is not available.",
+      "example": 335893238
+    },
+    "unit": {
+      "type": "string",
+      "description": "Unit of measurement for the indicator value",
+      "example": ""
+    },
+    "obs_status": {
+      "type": "string",
+      "description": "Observation status code indicating data quality or coverage",
+      "example": ""
+    },
+    "decimal": {
+      "type": "integer",
+      "description": "Recommended number of decimal places for display",
+      "example": 0
+    }
+  },
+  "required": ["indicator", "country", "date"]
+}

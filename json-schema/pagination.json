@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/worldbank/json-schema/pagination.json",
+  "title": "PaginationData",
+  "description": "Pagination metadata returned as the first element in World Bank API response arrays.",
+  "type": "object",
+  "properties": {
+    "page": {
+      "type": "integer",
+      "description": "Current page number (1-indexed)",
+      "minimum": 1,
+      "example": 1
+    },
+    "pages": {
+      "type": "integer",
+      "description": "Total number of pages",
+      "minimum": 1,
+      "example": 10
+    },
+    "per_page": {
+      "type": "integer",
+      "description": "Number of records returned per page",
+      "minimum": 1,
+      "maximum": 1000,
+      "example": 50
+    },
+    "total": {
+      "type": "integer",
+      "description": "Total number of records matching the query",
+      "minimum": 0,
+      "example": 500
+    },
+    "sourceid": {
+      "type": ["string", "null"],
+      "description": "Source database identifier",
+      "example": "2"
+    },
+    "sourcename": {
+      "type": ["string", "null"],
+      "description": "Source database name",
+      "example": "World Development Indicators"
+    },
+    "lastupdated": {
+      "type": ["string", "null"],
+      "description": "Date the data source was last updated (YYYY-MM-DD)",
+      "format": "date",
+      "example": "2024-06-28"
+    }
+  },
+  "required": ["page", "pages", "per_page", "total"]
+}
