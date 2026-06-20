@@ -6,7 +6,7 @@ description: >-
   country profiles, financial data, climate information, and project operations.
   All data is freely available under Creative Commons Attribution 4.0 licensing
   with no authentication required for most endpoints.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/worldbank/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -33,7 +33,7 @@ apis:
       statistics, and demographic data across countries and regions. Supports
       filtering by date range, country, region, income level, and lending type.
       Returns data in XML, JSON, JSONP, and JSON-stat formats.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://datahelpdesk.worldbank.org/knowledgebase/articles/889386-developer-information-overview
     baseURL: https://api.worldbank.org/v2
     tags:
@@ -62,7 +62,7 @@ apis:
       listing, viewing dataset metadata, and downloading resource files.
       Supports OData-style query parameters for filtering, sorting, and
       pagination with up to 100 records per request.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://datahelpdesk.worldbank.org/knowledgebase/articles/1886698-data-catalog-api
     baseURL: https://datacatalogapi.worldbank.org
     tags:
@@ -85,7 +85,7 @@ apis:
       and closed projects. Returns project details including financial commitments,
       status, country classification, themes, and team information across IBRD
       and IDA lending operations worldwide.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://datahelpdesk.worldbank.org/knowledgebase/articles/889386-developer-information-overview
     baseURL: https://search.worldbank.org/api/v2/projects
     tags:
@@ -108,7 +108,7 @@ apis:
       credits, trust funds, budget data, and financial statements. Delivered
       through the Finances One platform with support for JSON and CSV output.
       Maximum 1,000 records per request with pagination support.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://financesone.worldbank.org/api-explorer
     baseURL: https://datacatalogapi.worldbank.org/dexapps/fone/api
     tags:
@@ -133,7 +133,7 @@ apis:
       data sharing. Supports World Development Indicators (WDI) dataset with
       annual data from 1960 onwards. Limited to 15,000 data points per call.
       Supports SDMX-ML 2.1 and JSON response formats.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://datahelpdesk.worldbank.org/knowledgebase/articles/1886701-sdmx-api-queries
     baseURL: https://api.worldbank.org/v2/sdmx/rest
     tags:
