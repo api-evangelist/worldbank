@@ -2,13 +2,14 @@
   "repo": "worldbank",
   "feeds": [
     {
-      "source": "https://blogs.worldbank.org/opendata",
-      "feed_url": "",
-      "saved": 2,
-      "method": "agent-scrape"
+      "source": "https://linkedin.com/showcase/world-bank-development-economics",
+      "feed_url": "https://linkedin.com/showcase/world-bank-development-economics",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 5,
-  "fetched": "2026-06-27T13:21:37Z",
-  "agent_pulled": "2026-06-27"
+  "post_count": 7,
+  "fetched": "2026-07-11T11:50:51Z",
+  "agent_pulled": "2026-07-04"
 }
