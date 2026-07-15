@@ -1,0 +1,134 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/worldbank-indicators-api.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 12
+  by_action_class:
+    connected: 12
+  by_consequence:
+    read: 12
+  human_in_the_loop_required: 0
+operations:
+- path: /country
+  method: get
+  operationId: listCountries
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /country/{country_code}
+  method: get
+  operationId: getCountry
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /country/all/indicator/{indicator_id}
+  method: get
+  operationId: getIndicatorAllCountries
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /country/{country_code}/indicator/{indicator_id}
+  method: get
+  operationId: getIndicatorByCountry
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /indicator
+  method: get
+  operationId: listIndicators
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /indicator/{indicator_id}
+  method: get
+  operationId: getIndicator
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /region
+  method: get
+  operationId: listRegions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /incomelevel
+  method: get
+  operationId: listIncomeLevels
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /lendingtype
+  method: get
+  operationId: listLendingTypes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /source
+  method: get
+  operationId: listSources
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /topic
+  method: get
+  operationId: listTopics
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /topic/{topic_id}/indicator
+  method: get
+  operationId: listIndicatorsByTopic
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
