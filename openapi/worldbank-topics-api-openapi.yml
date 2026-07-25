@@ -1,0 +1,213 @@
+openapi: 3.0.0
+info:
+  version: 2.0.0
+  title: World Bank Indicators Classifications Topics API
+  description: 'The World Bank Indicators API provides programmatic access to nearly 16,000 time series development indicators. These indicators include data such as total population, gross domestic product, energy use, poverty rates, health metrics, education statistics, and demographic data across countries and regions. Most data series date back over 50 years. No authentication is required. Supports filtering by date range, country, region, income level, and lending type. Returns data in JSON format with pagination support.
+
+    '
+  contact:
+    name: World Bank Data Help Desk
+    url: https://datahelpdesk.worldbank.org
+    email: data@worldbank.org
+  license:
+    name: Creative Commons Attribution 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+servers:
+- url: https://api.worldbank.org/v2
+  description: World Bank API v2
+tags:
+- name: Topics
+paths:
+  /topic:
+    get:
+      summary: List topics
+      description: Returns a list of World Bank indicator topics.
+      operationId: listTopics
+      tags:
+      - Topics
+      parameters:
+      - name: format
+        in: query
+        description: Response format
+        required: false
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          default: json
+      - name: page
+        in: query
+        description: Page number
+        required: false
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: Records per page
+        required: false
+        schema:
+          type: integer
+          default: 50
+      responses:
+        '200':
+          description: List of topics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                  - $ref: '#/components/schemas/PaginationData'
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/Topic'
+  /topic/{topic_id}/indicator:
+    get:
+      summary: List indicators by topic
+      description: Returns a list of indicators belonging to a specific topic.
+      operationId: listIndicatorsByTopic
+      tags:
+      - Topics
+      parameters:
+      - name: topic_id
+        in: path
+        description: Topic ID (1-21, e.g., 1=Agriculture, 2=Aid Effectiveness)
+        required: true
+        schema:
+          type: integer
+      - name: format
+        in: query
+        description: Response format
+        required: false
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          default: json
+      - name: page
+        in: query
+        description: Page number
+        required: false
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: Records per page
+        required: false
+        schema:
+          type: integer
+          default: 50
+      responses:
+        '200':
+          description: List of indicators for the specified topic
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                  - $ref: '#/components/schemas/PaginationData'
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/Indicator'
+components:
+  schemas:
+    Topic:
+      type: object
+      description: World Bank indicator topic category
+      properties:
+        id:
+          type: string
+          description: Topic identifier
+          example: '1'
+        value:
+          type: string
+          description: Topic name
+          example: Agriculture & Rural Development
+        sourceNote:
+          type: string
+          description: Description of the topic
+    Indicator:
+      type: object
+      description: World Bank development indicator metadata
+      properties:
+        id:
+          type: string
+          description: Indicator code
+          example: SP.POP.TOTL
+        name:
+          type: string
+          description: Indicator name
+          example: Population, total
+        unit:
+          type: string
+          description: Unit of measurement
+          example: ''
+        source:
+          $ref: '#/components/schemas/ClassificationRef'
+        sourceNote:
+          type: string
+          description: Methodological notes about the indicator
+        sourceOrganization:
+          type: string
+          description: Organization that collects this data
+          example: (1) United Nations Population Division.
+        topics:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClassificationRef'
+    PaginationData:
+      type: object
+      description: Pagination metadata returned as the first element of the response array
+      properties:
+        page:
+          type: integer
+          description: Current page number
+          example: 1
+        pages:
+          type: integer
+          description: Total number of pages
+          example: 10
+        per_page:
+          type: integer
+          description: Records per page
+          example: 50
+        total:
+          type: integer
+          description: Total number of records
+          example: 500
+        sourceid:
+          type: string
+          nullable: true
+          description: Source identifier
+          example: '2'
+        sourcename:
+          type: string
+          nullable: true
+          description: Source name
+          example: World Development Indicators
+        lastupdated:
+          type: string
+          nullable: true
+          description: Date of last data update
+          example: '2024-06-28'
+    ClassificationRef:
+      type: object
+      description: Reference to a World Bank classification category
+      properties:
+        id:
+          type: string
+          description: Classification code
+          example: NAC
+        iso2code:
+          type: string
+          description: ISO 2-character code
+          example: XU
+        value:
+          type: string
+          description: Human-readable classification name
+          example: North America

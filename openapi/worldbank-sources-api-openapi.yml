@@ -1,0 +1,141 @@
+openapi: 3.0.0
+info:
+  version: 2.0.0
+  title: World Bank Indicators Classifications Sources API
+  description: 'The World Bank Indicators API provides programmatic access to nearly 16,000 time series development indicators. These indicators include data such as total population, gross domestic product, energy use, poverty rates, health metrics, education statistics, and demographic data across countries and regions. Most data series date back over 50 years. No authentication is required. Supports filtering by date range, country, region, income level, and lending type. Returns data in JSON format with pagination support.
+
+    '
+  contact:
+    name: World Bank Data Help Desk
+    url: https://datahelpdesk.worldbank.org
+    email: data@worldbank.org
+  license:
+    name: Creative Commons Attribution 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+servers:
+- url: https://api.worldbank.org/v2
+  description: World Bank API v2
+tags:
+- name: Sources
+paths:
+  /source:
+    get:
+      summary: List data sources
+      description: Returns a list of data sources available through the World Bank Indicators API.
+      operationId: listSources
+      tags:
+      - Sources
+      parameters:
+      - name: format
+        in: query
+        description: Response format
+        required: false
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          default: json
+      - name: page
+        in: query
+        description: Page number
+        required: false
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: Records per page
+        required: false
+        schema:
+          type: integer
+          default: 50
+      responses:
+        '200':
+          description: List of data sources
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                  - $ref: '#/components/schemas/PaginationData'
+                  - type: array
+                    items:
+                      $ref: '#/components/schemas/Source'
+components:
+  schemas:
+    PaginationData:
+      type: object
+      description: Pagination metadata returned as the first element of the response array
+      properties:
+        page:
+          type: integer
+          description: Current page number
+          example: 1
+        pages:
+          type: integer
+          description: Total number of pages
+          example: 10
+        per_page:
+          type: integer
+          description: Records per page
+          example: 50
+        total:
+          type: integer
+          description: Total number of records
+          example: 500
+        sourceid:
+          type: string
+          nullable: true
+          description: Source identifier
+          example: '2'
+        sourcename:
+          type: string
+          nullable: true
+          description: Source name
+          example: World Development Indicators
+        lastupdated:
+          type: string
+          nullable: true
+          description: Date of last data update
+          example: '2024-06-28'
+    Source:
+      type: object
+      description: World Bank data source
+      properties:
+        id:
+          type: string
+          description: Source identifier
+          example: '2'
+        lastupdated:
+          type: string
+          description: Date the source was last updated
+          example: '2024-06-28'
+        name:
+          type: string
+          description: Source name
+          example: World Development Indicators
+        code:
+          type: string
+          description: Source code
+          example: WDI
+        description:
+          type: string
+          description: Source description
+        url:
+          type: string
+          description: Source URL
+          example: ''
+        dataavailability:
+          type: string
+          description: Data availability status
+          example: Y
+        metadataavailability:
+          type: string
+          description: Metadata availability status
+          example: Y
+        concepts:
+          type: string
+          description: Number of concepts in the source
+          example: '3'
