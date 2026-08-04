@@ -1,0 +1,919 @@
+openapi: 3.0.0
+info:
+  version: 2.0.0
+  title: World Bank Indicators API
+  description: >
+    The World Bank Indicators API provides programmatic access to nearly 16,000
+    time series development indicators. These indicators include data such as
+    total population, gross domestic product, energy use, poverty rates, health
+    metrics, education statistics, and demographic data across countries and
+    regions. Most data series date back over 50 years. No authentication is
+    required. Supports filtering by date range, country, region, income level,
+    and lending type. Returns data in JSON format with pagination support.
+  contact:
+    name: World Bank Data Help Desk
+    url: https://datahelpdesk.worldbank.org
+    email: data@worldbank.org
+  license:
+    name: Creative Commons Attribution 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+servers:
+  - url: https://api.worldbank.org/v2
+    description: World Bank API v2
+paths:
+  /country:
+    get:
+      summary: List countries
+      description: >
+        Returns a list of countries with geographical and economic classification
+        information. Supports filtering by country code, region, income level,
+        and lending type.
+      operationId: listCountries
+      tags:
+        - Countries
+      parameters:
+        - name: format
+          in: query
+          description: Response format
+          required: false
+          schema:
+            type: string
+            enum: [json, xml, jsonp]
+            default: json
+        - name: page
+          in: query
+          description: Page number for pagination
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: per_page
+          in: query
+          description: Number of records per page (max 1000)
+          required: false
+          schema:
+            type: integer
+            default: 50
+            maximum: 1000
+        - name: region
+          in: query
+          description: Filter by region code (e.g., EAS, ECS, LCN, MEA, NAC, SAS, SSF)
+          required: false
+          schema:
+            type: string
+        - name: incomeLevel
+          in: query
+          description: Filter by income level (e.g., HIC, UMC, LMC, LIC)
+          required: false
+          schema:
+            type: string
+        - name: lendingType
+          in: query
+          description: Filter by lending type (e.g., IBD, IDA, IDX, LNX)
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of countries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/PaginationData'
+                    - type: array
+                      items:
+                        $ref: '#/components/schemas/Country'
+
+  /country/{country_code}:
+    get:
+      summary: Get country details
+      description: Returns details for a specific country identified by its ISO 3166-1 alpha-2 or alpha-3 code.
+      operationId: getCountry
+      tags:
+        - Countries
+      parameters:
+        - name: country_code
+          in: path
+          description: ISO 3166-1 country code (2 or 3 characters, e.g., US, USA, CN, CHN)
+          required: true
+          schema:
+            type: string
+        - name: format
+          in: query
+          description: Response format
+          required: false
+          schema:
+            type: string
+            enum: [json, xml]
+            default: json
+      responses:
+        '200':
+          description: Country details
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/PaginationData'
+                    - type: array
+                      items:
+                        $ref: '#/components/schemas/CountryDetail'
+
+  /country/all/indicator/{indicator_id}:
+    get:
+      summary: Get indicator data for all countries
+      description: >
+        Returns time series data for the specified indicator across all countries.
+        Common indicators include SP.POP.TOTL (Population), NY.GDP.MKTP.CD (GDP),
+        SP.DYN.IMRT.IN (Infant mortality), SE.ADT.LITR.ZS (Literacy rate).
+      operationId: getIndicatorAllCountries
+      tags:
+        - Indicators
+      parameters:
+        - name: indicator_id
+          in: path
+          description: World Bank indicator code (e.g., SP.POP.TOTL, NY.GDP.MKTP.CD)
+          required: true
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: >
+            Date range filter. Single year (2010), range (2010:2020),
+            or monthly (2010M01:2010M12) or quarterly (2010Q1:2010Q4).
+          required: false
+          schema:
+            type: string
+        - name: format
+          in: query
+          description: Response format
+          required: false
+          schema:
+            type: string
+            enum: [json, xml, jsonp]
+            default: json
+        - name: page
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: per_page
+          in: query
+          description: Records per page (max 1000)
+          required: false
+          schema:
+            type: integer
+            default: 50
+            maximum: 1000
+        - name: mrv
+          in: query
+          description: Returns the most recent values for the specified number of years
+          required: false
+          schema:
+            type: integer
+        - name: gap_fill
+          in: query
+          description: Fills missing values with the previous non-empty value when used with mrv
+          required: false
+          schema:
+            type: string
+            enum: ['Y', 'N']
+        - name: frequency
+          in: query
+          description: Frequency of returned data (M=monthly, Q=quarterly, Y=yearly)
+          required: false
+          schema:
+            type: string
+            enum: [M, Q, Y]
+      responses:
+        '200':
+          description: Indicator data for all countries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndicatorResponse'
+
+  /country/{country_code}/indicator/{indicator_id}:
+    get:
+      summary: Get indicator data for a specific country
+      description: >
+        Returns time series data for the specified indicator for a single country.
+        Supports date filtering, pagination, and most-recent-value queries.
+      operationId: getIndicatorByCountry
+      tags:
+        - Indicators
+      parameters:
+        - name: country_code
+          in: path
+          description: ISO 3166-1 country code (e.g., US, USA, CN, CHN, AFG, ALB)
+          required: true
+          schema:
+            type: string
+        - name: indicator_id
+          in: path
+          description: World Bank indicator code (e.g., SP.POP.TOTL, NY.GDP.MKTP.CD)
+          required: true
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: Date range filter (single year, range, monthly, or quarterly)
+          required: false
+          schema:
+            type: string
+        - name: format
+          in: query
+          description: Response format
+          required: false
+          schema:
+            type: string
+            enum: [json, xml, jsonp]
+            default: json
+        - name: page
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: per_page
+          in: query
+          description: Records per page (max 1000)
+          required: false
+          schema:
+            type: integer
+            default: 50
+            maximum: 1000
+        - name: mrv
+          in: query
+          description: Most recent values - number of years
+          required: false
+          schema:
+            type: integer
+        - name: frequency
+          in: query
+          description: Data frequency (M=monthly, Q=quarterly, Y=yearly)
+          required: false
+          schema:
+            type: string
+            enum: [M, Q, Y]
+      responses:
+        '200':
+          description: Indicator data for the specified country
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndicatorResponse'
+
+  /indicator:
+    get:
+      summary: List all indicators
+      description: Returns a paginated list of all available World Bank indicators with metadata.
+      operationId: listIndicators
+      tags:
+        - Indicators
+      parameters:
+        - name: format
+          in: query
+          description: Response format
+          required: false
+          schema:
+            type: string
+            enum: [json, xml]
+            default: json
+        - name: page
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: per_page
+          in: query
+          description: Records per page (max 1000)
+          required: false
+          schema:
+            type: integer
+            default: 50
+            maximum: 1000
+      responses:
+        '200':
+          description: List of indicators
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/PaginationData'
+                    - type: array
+                      items:
+                        $ref: '#/components/schemas/Indicator'
+
+  /indicator/{indicator_id}:
+    get:
+      summary: Get indicator metadata
+      description: Returns metadata for a specific indicator including name, source, and topic classification.
+      operationId: getIndicator
+      tags:
+        - Indicators
+      parameters:
+        - name: indicator_id
+          in: path
+          description: World Bank indicator code (e.g., SP.POP.TOTL)
+          required: true
+          schema:
+            type: string
+        - name: format
+          in: query
+          description: Response format
+          required: false
+          schema:
+            type: string
+            enum: [json, xml]
+            default: json
+      responses:
+        '200':
+          description: Indicator metadata
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/PaginationData'
+                    - type: array
+                      items:
+                        $ref: '#/components/schemas/Indicator'
+
+  /region:
+    get:
+      summary: List regions
+      description: Returns a list of World Bank regions.
+      operationId: listRegions
+      tags:
+        - Regions
+      parameters:
+        - name: format
+          in: query
+          description: Response format
+          required: false
+          schema:
+            type: string
+            enum: [json, xml]
+            default: json
+        - name: page
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: per_page
+          in: query
+          description: Records per page
+          required: false
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: List of regions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/PaginationData'
+                    - type: array
+                      items:
+                        $ref: '#/components/schemas/Region'
+
+  /incomelevel:
+    get:
+      summary: List income levels
+      description: Returns a list of World Bank income level classifications.
+      operationId: listIncomeLevels
+      tags:
+        - Classifications
+      parameters:
+        - name: format
+          in: query
+          description: Response format
+          required: false
+          schema:
+            type: string
+            enum: [json, xml]
+            default: json
+        - name: page
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: per_page
+          in: query
+          description: Records per page
+          required: false
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: List of income levels
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/PaginationData'
+                    - type: array
+                      items:
+                        $ref: '#/components/schemas/IncomeLevel'
+
+  /lendingtype:
+    get:
+      summary: List lending types
+      description: Returns a list of World Bank lending type classifications.
+      operationId: listLendingTypes
+      tags:
+        - Classifications
+      parameters:
+        - name: format
+          in: query
+          description: Response format
+          required: false
+          schema:
+            type: string
+            enum: [json, xml]
+            default: json
+        - name: page
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: per_page
+          in: query
+          description: Records per page
+          required: false
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: List of lending types
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/PaginationData'
+                    - type: array
+                      items:
+                        $ref: '#/components/schemas/LendingType'
+
+  /source:
+    get:
+      summary: List data sources
+      description: Returns a list of data sources available through the World Bank Indicators API.
+      operationId: listSources
+      tags:
+        - Sources
+      parameters:
+        - name: format
+          in: query
+          description: Response format
+          required: false
+          schema:
+            type: string
+            enum: [json, xml]
+            default: json
+        - name: page
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: per_page
+          in: query
+          description: Records per page
+          required: false
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: List of data sources
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/PaginationData'
+                    - type: array
+                      items:
+                        $ref: '#/components/schemas/Source'
+
+  /topic:
+    get:
+      summary: List topics
+      description: Returns a list of World Bank indicator topics.
+      operationId: listTopics
+      tags:
+        - Topics
+      parameters:
+        - name: format
+          in: query
+          description: Response format
+          required: false
+          schema:
+            type: string
+            enum: [json, xml]
+            default: json
+        - name: page
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: per_page
+          in: query
+          description: Records per page
+          required: false
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: List of topics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/PaginationData'
+                    - type: array
+                      items:
+                        $ref: '#/components/schemas/Topic'
+
+  /topic/{topic_id}/indicator:
+    get:
+      summary: List indicators by topic
+      description: Returns a list of indicators belonging to a specific topic.
+      operationId: listIndicatorsByTopic
+      tags:
+        - Topics
+        - Indicators
+      parameters:
+        - name: topic_id
+          in: path
+          description: Topic ID (1-21, e.g., 1=Agriculture, 2=Aid Effectiveness)
+          required: true
+          schema:
+            type: integer
+        - name: format
+          in: query
+          description: Response format
+          required: false
+          schema:
+            type: string
+            enum: [json, xml]
+            default: json
+        - name: page
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: per_page
+          in: query
+          description: Records per page
+          required: false
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: List of indicators for the specified topic
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/PaginationData'
+                    - type: array
+                      items:
+                        $ref: '#/components/schemas/Indicator'
+
+components:
+  schemas:
+    PaginationData:
+      type: object
+      description: Pagination metadata returned as the first element of the response array
+      properties:
+        page:
+          type: integer
+          description: Current page number
+          example: 1
+        pages:
+          type: integer
+          description: Total number of pages
+          example: 10
+        per_page:
+          type: integer
+          description: Records per page
+          example: 50
+        total:
+          type: integer
+          description: Total number of records
+          example: 500
+        sourceid:
+          type: string
+          nullable: true
+          description: Source identifier
+          example: '2'
+        sourcename:
+          type: string
+          nullable: true
+          description: Source name
+          example: World Development Indicators
+        lastupdated:
+          type: string
+          nullable: true
+          description: Date of last data update
+          example: '2024-06-28'
+
+    Country:
+      type: object
+      description: World Bank country classification data
+      properties:
+        id:
+          type: string
+          description: ISO 3166-1 alpha-3 country code
+          example: USA
+        iso2Code:
+          type: string
+          description: ISO 3166-1 alpha-2 country code
+          example: US
+        name:
+          type: string
+          description: Country name
+          example: United States
+        region:
+          $ref: '#/components/schemas/ClassificationRef'
+        adminregion:
+          $ref: '#/components/schemas/ClassificationRef'
+        incomeLevel:
+          $ref: '#/components/schemas/ClassificationRef'
+        lendingType:
+          $ref: '#/components/schemas/ClassificationRef'
+        capitalCity:
+          type: string
+          description: Capital city name
+          example: Washington D.C.
+        longitude:
+          type: string
+          description: Country centroid longitude
+          example: '-95.7129'
+        latitude:
+          type: string
+          description: Country centroid latitude
+          example: '37.0902'
+
+    CountryDetail:
+      allOf:
+        - $ref: '#/components/schemas/Country'
+
+    ClassificationRef:
+      type: object
+      description: Reference to a World Bank classification category
+      properties:
+        id:
+          type: string
+          description: Classification code
+          example: NAC
+        iso2code:
+          type: string
+          description: ISO 2-character code
+          example: XU
+        value:
+          type: string
+          description: Human-readable classification name
+          example: North America
+
+    Indicator:
+      type: object
+      description: World Bank development indicator metadata
+      properties:
+        id:
+          type: string
+          description: Indicator code
+          example: SP.POP.TOTL
+        name:
+          type: string
+          description: Indicator name
+          example: 'Population, total'
+        unit:
+          type: string
+          description: Unit of measurement
+          example: ''
+        source:
+          $ref: '#/components/schemas/ClassificationRef'
+        sourceNote:
+          type: string
+          description: Methodological notes about the indicator
+        sourceOrganization:
+          type: string
+          description: Organization that collects this data
+          example: '(1) United Nations Population Division.'
+        topics:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClassificationRef'
+
+    IndicatorValue:
+      type: object
+      description: A single data point for an indicator
+      properties:
+        indicator:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Indicator code
+              example: SP.POP.TOTL
+            value:
+              type: string
+              description: Indicator name
+              example: 'Population, total'
+        country:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Country code
+              example: US
+            value:
+              type: string
+              description: Country name
+              example: United States
+        countryiso3code:
+          type: string
+          description: ISO 3166-1 alpha-3 country code
+          example: USA
+        date:
+          type: string
+          description: Year or date period of measurement
+          example: '2022'
+        value:
+          type: number
+          nullable: true
+          description: Numeric value of the indicator
+          example: 335893238
+        unit:
+          type: string
+          description: Unit of measurement
+          example: ''
+        obs_status:
+          type: string
+          description: Observation status code
+          example: ''
+        decimal:
+          type: integer
+          description: Number of decimal places for display
+          example: 0
+
+    IndicatorResponse:
+      type: array
+      description: Standard World Bank API response containing pagination data and indicator values
+      items:
+        oneOf:
+          - $ref: '#/components/schemas/PaginationData'
+          - type: array
+            items:
+              $ref: '#/components/schemas/IndicatorValue'
+
+    Region:
+      type: object
+      description: World Bank geographic region
+      properties:
+        id:
+          type: string
+          description: Region code
+          example: EAS
+        iso2code:
+          type: string
+          description: ISO 2-character region code
+          example: Z4
+        name:
+          type: string
+          description: Region name
+          example: East Asia & Pacific
+
+    IncomeLevel:
+      type: object
+      description: World Bank income level classification
+      properties:
+        id:
+          type: string
+          description: Income level code
+          example: HIC
+        iso2code:
+          type: string
+          description: ISO 2-character code
+          example: XD
+        value:
+          type: string
+          description: Income level name
+          example: High income
+
+    LendingType:
+      type: object
+      description: World Bank lending type classification
+      properties:
+        id:
+          type: string
+          description: Lending type code
+          example: IBD
+        iso2code:
+          type: string
+          description: ISO 2-character code
+          example: XF
+        value:
+          type: string
+          description: Lending type name
+          example: IBRD
+
+    Source:
+      type: object
+      description: World Bank data source
+      properties:
+        id:
+          type: string
+          description: Source identifier
+          example: '2'
+        lastupdated:
+          type: string
+          description: Date the source was last updated
+          example: '2024-06-28'
+        name:
+          type: string
+          description: Source name
+          example: World Development Indicators
+        code:
+          type: string
+          description: Source code
+          example: WDI
+        description:
+          type: string
+          description: Source description
+        url:
+          type: string
+          description: Source URL
+          example: ''
+        dataavailability:
+          type: string
+          description: Data availability status
+          example: Y
+        metadataavailability:
+          type: string
+          description: Metadata availability status
+          example: Y
+        concepts:
+          type: string
+          description: Number of concepts in the source
+          example: '3'
+
+    Topic:
+      type: object
+      description: World Bank indicator topic category
+      properties:
+        id:
+          type: string
+          description: Topic identifier
+          example: '1'
+        value:
+          type: string
+          description: Topic name
+          example: Agriculture & Rural Development
+        sourceNote:
+          type: string
+          description: Description of the topic

@@ -1,0 +1,24 @@
+{
+  "provider": "worldbank",
+  "sources": [
+    "worldbank-classifications-api-openapi.yml",
+    "worldbank-countries-api-openapi.yml",
+    "worldbank-indicators-api-openapi.yml",
+    "worldbank-regions-api-openapi.yml",
+    "worldbank-sources-api-openapi.yml",
+    "worldbank-topics-api-openapi.yml"
+  ],
+  "outputs": [
+    "worldbank-classifications-api-openapi.yml",
+    "worldbank-countries-api-openapi.yml",
+    "worldbank-indicators-api-openapi.yml",
+    "worldbank-regions-api-openapi.yml",
+    "worldbank-sources-api-openapi.yml",
+    "worldbank-topics-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
