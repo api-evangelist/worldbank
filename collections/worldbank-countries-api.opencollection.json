@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "World Bank Indicators Classifications Countries API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Countries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List countries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.worldbank.org/v2/country",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page (max 1000)"
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "query",
+                "description": "Filter by region code (e.g., EAS, ECS, LCN, MEA, NAC, SAS, SSF)"
+              },
+              {
+                "name": "incomeLevel",
+                "value": "",
+                "type": "query",
+                "description": "Filter by income level (e.g., HIC, UMC, LMC, LIC)"
+              },
+              {
+                "name": "lendingType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by lending type (e.g., IBD, IDA, IDX, LNX)"
+              }
+            ]
+          },
+          "docs": "Returns a list of countries with geographical and economic classification information. Supports filtering by country code, region, income level, and lending type.\n"
+        },
+        {
+          "info": {
+            "name": "Get country details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.worldbank.org/v2/country/:country_code",
+            "params": [
+              {
+                "name": "country_code",
+                "value": "",
+                "type": "path",
+                "description": "ISO 3166-1 country code (2 or 3 characters, e.g., US, USA, CN, CHN)"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific country identified by its ISO 3166-1 alpha-2 or alpha-3 code."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

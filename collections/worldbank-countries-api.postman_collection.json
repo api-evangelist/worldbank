@@ -1,0 +1,264 @@
+{
+  "item": [
+    {
+      "id": "3ee85d9d-b017-4ef2-8371-81ff8ccc3101",
+      "name": "Countries",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "80108c66-eaa7-40ad-bd27-a7ec67c4ad78",
+          "name": "List countries",
+          "request": {
+            "name": "List countries",
+            "description": {
+              "content": "Returns a list of countries with geographical and economic classification information. Supports filtering by country code, region, income level, and lending type.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "country"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "50",
+                  "description": "Number of records per page (max 1000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>",
+                  "description": "Filter by region code (e.g., EAS, ECS, LCN, MEA, NAC, SAS, SSF)"
+                },
+                {
+                  "disabled": false,
+                  "key": "incomeLevel",
+                  "value": "<string>",
+                  "description": "Filter by income level (e.g., HIC, UMC, LMC, LIC)"
+                },
+                {
+                  "disabled": false,
+                  "key": "lendingType",
+                  "value": "<string>",
+                  "description": "Filter by lending type (e.g., IBD, IDA, IDX, LNX)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "147ef821-ae17-4f25-b9cf-e41e24ab6159",
+              "name": "List of countries",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "country"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "incomeLevel",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lendingType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"page\": 1,\n    \"pages\": 10,\n    \"per_page\": 50,\n    \"total\": 500,\n    \"sourceid\": \"2\",\n    \"sourcename\": \"World Development Indicators\",\n    \"lastupdated\": \"2024-06-28\"\n  },\n  {\n    \"page\": 1,\n    \"pages\": 10,\n    \"per_page\": 50,\n    \"total\": 500,\n    \"sourceid\": \"2\",\n    \"sourcename\": \"World Development Indicators\",\n    \"lastupdated\": \"2024-06-28\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd827ea4-93c7-44e9-bd86-d5c3b44a5090",
+          "name": "Get country details",
+          "request": {
+            "name": "Get country details",
+            "description": {
+              "content": "Returns details for a specific country identified by its ISO 3166-1 alpha-2 or alpha-3 code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "country",
+                ":country_code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "country_code",
+                  "description": "(Required) ISO 3166-1 country code (2 or 3 characters, e.g., US, USA, CN, CHN)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d127158a-e7ef-4ec0-a257-090b834be47c",
+              "name": "Country details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "country",
+                    ":country_code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "country_code",
+                      "description": "(Required) ISO 3166-1 country code (2 or 3 characters, e.g., US, USA, CN, CHN)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"page\": 1,\n    \"pages\": 10,\n    \"per_page\": 50,\n    \"total\": 500,\n    \"sourceid\": \"2\",\n    \"sourcename\": \"World Development Indicators\",\n    \"lastupdated\": \"2024-06-28\"\n  },\n  {\n    \"page\": 1,\n    \"pages\": 10,\n    \"per_page\": 50,\n    \"total\": 500,\n    \"sourceid\": \"2\",\n    \"sourcename\": \"World Development Indicators\",\n    \"lastupdated\": \"2024-06-28\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.worldbank.org/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "027a8528-7970-4925-b97e-dc94b0c13c39",
+    "name": "World Bank Indicators Classifications Countries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The World Bank Indicators API provides programmatic access to nearly 16,000 time series development indicators. These indicators include data such as total population, gross domestic product, energy use, poverty rates, health metrics, education statistics, and demographic data across countries and regions. Most data series date back over 50 years. No authentication is required. Supports filtering by date range, country, region, income level, and lending type. Returns data in JSON format with pagination support.\n\n\nContact Support:\n Name: World Bank Data Help Desk\n Email: data@worldbank.org",
+      "type": "text/plain"
+    }
+  }
+}

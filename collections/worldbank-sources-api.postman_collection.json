@@ -1,0 +1,134 @@
+{
+  "item": [
+    {
+      "id": "dcbaeec2-71f3-41bd-8097-18bfab8e9b30",
+      "name": "Sources",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2f24951b-5577-4424-99b7-522c80fea768",
+          "name": "List data sources",
+          "request": {
+            "name": "List data sources",
+            "description": {
+              "content": "Returns a list of data sources available through the World Bank Indicators API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "source"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "50",
+                  "description": "Records per page"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b40ce6d-b273-464b-b1ea-35dd2b11ebe8",
+              "name": "List of data sources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"page\": 1,\n    \"pages\": 10,\n    \"per_page\": 50,\n    \"total\": 500,\n    \"sourceid\": \"2\",\n    \"sourcename\": \"World Development Indicators\",\n    \"lastupdated\": \"2024-06-28\"\n  },\n  {\n    \"page\": 1,\n    \"pages\": 10,\n    \"per_page\": 50,\n    \"total\": 500,\n    \"sourceid\": \"2\",\n    \"sourcename\": \"World Development Indicators\",\n    \"lastupdated\": \"2024-06-28\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.worldbank.org/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "aecfe082-685b-4018-ba98-9f5457b81588",
+    "name": "World Bank Indicators Classifications Sources API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The World Bank Indicators API provides programmatic access to nearly 16,000 time series development indicators. These indicators include data such as total population, gross domestic product, energy use, poverty rates, health metrics, education statistics, and demographic data across countries and regions. Most data series date back over 50 years. No authentication is required. Supports filtering by date range, country, region, income level, and lending type. Returns data in JSON format with pagination support.\n\n\nContact Support:\n Name: World Bank Data Help Desk\n Email: data@worldbank.org",
+      "type": "text/plain"
+    }
+  }
+}

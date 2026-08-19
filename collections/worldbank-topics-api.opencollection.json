@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "World Bank Indicators Classifications Topics API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Topics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List topics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.worldbank.org/v2/topic",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Records per page"
+              }
+            ]
+          },
+          "docs": "Returns a list of World Bank indicator topics."
+        },
+        {
+          "info": {
+            "name": "List indicators by topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.worldbank.org/v2/topic/:topic_id/indicator",
+            "params": [
+              {
+                "name": "topic_id",
+                "value": "",
+                "type": "path",
+                "description": "Topic ID (1-21, e.g., 1=Agriculture, 2=Aid Effectiveness)"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Records per page"
+              }
+            ]
+          },
+          "docs": "Returns a list of indicators belonging to a specific topic."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

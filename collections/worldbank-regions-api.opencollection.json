@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "World Bank Indicators Classifications Regions API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Regions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List regions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.worldbank.org/v2/region",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Records per page"
+              }
+            ]
+          },
+          "docs": "Returns a list of World Bank regions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "World Bank Indicators Classifications API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Classifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List income levels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.worldbank.org/v2/incomelevel",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Records per page"
+              }
+            ]
+          },
+          "docs": "Returns a list of World Bank income level classifications."
+        },
+        {
+          "info": {
+            "name": "List lending types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.worldbank.org/v2/lendingtype",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Records per page"
+              }
+            ]
+          },
+          "docs": "Returns a list of World Bank lending type classifications."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,233 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "World Bank Classifications Indicators API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Indicators",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get indicator data for all countries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.worldbank.org/v2/country/all/indicator/:indicator_id",
+            "params": [
+              {
+                "name": "indicator_id",
+                "value": "",
+                "type": "path",
+                "description": "World Bank indicator code (e.g., SP.POP.TOTL, NY.GDP.MKTP.CD)"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Date range filter. Single year (2010), range (2010:2020), or monthly (2010M01:2010M12) or quarterly (2010Q1:2010Q4).\n"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (max 1000)"
+              },
+              {
+                "name": "mrv",
+                "value": "",
+                "type": "query",
+                "description": "Returns the most recent values for the specified number of years"
+              },
+              {
+                "name": "gap_fill",
+                "value": "",
+                "type": "query",
+                "description": "Fills missing values with the previous non-empty value when used with mrv"
+              },
+              {
+                "name": "frequency",
+                "value": "",
+                "type": "query",
+                "description": "Frequency of returned data (M=monthly, Q=quarterly, Y=yearly)"
+              }
+            ]
+          },
+          "docs": "Returns time series data for the specified indicator across all countries. Common indicators include SP.POP.TOTL (Population), NY.GDP.MKTP.CD (GDP), SP.DYN.IMRT.IN (Infant mortality), SE.ADT.LITR.ZS (Literacy rate).\n"
+        },
+        {
+          "info": {
+            "name": "Get indicator data for a specific country",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.worldbank.org/v2/country/:country_code/indicator/:indicator_id",
+            "params": [
+              {
+                "name": "country_code",
+                "value": "",
+                "type": "path",
+                "description": "ISO 3166-1 country code (e.g., US, USA, CN, CHN, AFG, ALB)"
+              },
+              {
+                "name": "indicator_id",
+                "value": "",
+                "type": "path",
+                "description": "World Bank indicator code (e.g., SP.POP.TOTL, NY.GDP.MKTP.CD)"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Date range filter (single year, range, monthly, or quarterly)"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (max 1000)"
+              },
+              {
+                "name": "mrv",
+                "value": "",
+                "type": "query",
+                "description": "Most recent values - number of years"
+              },
+              {
+                "name": "frequency",
+                "value": "",
+                "type": "query",
+                "description": "Data frequency (M=monthly, Q=quarterly, Y=yearly)"
+              }
+            ]
+          },
+          "docs": "Returns time series data for the specified indicator for a single country. Supports date filtering, pagination, and most-recent-value queries.\n"
+        },
+        {
+          "info": {
+            "name": "List all indicators",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.worldbank.org/v2/indicator",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Records per page (max 1000)"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of all available World Bank indicators with metadata."
+        },
+        {
+          "info": {
+            "name": "Get indicator metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.worldbank.org/v2/indicator/:indicator_id",
+            "params": [
+              {
+                "name": "indicator_id",
+                "value": "",
+                "type": "path",
+                "description": "World Bank indicator code (e.g., SP.POP.TOTL)"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Returns metadata for a specific indicator including name, source, and topic classification."
+        },
+        {
+          "info": {
+            "name": "List indicators by topic",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.worldbank.org/v2/topic/:topic_id/indicator",
+            "params": [
+              {
+                "name": "topic_id",
+                "value": "",
+                "type": "path",
+                "description": "Topic ID (1-21, e.g., 1=Agriculture, 2=Aid Effectiveness)"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Records per page"
+              }
+            ]
+          },
+          "docs": "Returns a list of indicators belonging to a specific topic."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

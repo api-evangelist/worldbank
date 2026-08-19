@@ -1,0 +1,688 @@
+{
+  "item": [
+    {
+      "id": "c28ca8fb-b6a8-4815-9e94-e7838a30cc7b",
+      "name": "Indicators",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3c5c02fd-4f26-427c-81c8-ae600ff3ce8e",
+          "name": "Get indicator data for all countries",
+          "request": {
+            "name": "Get indicator data for all countries",
+            "description": {
+              "content": "Returns time series data for the specified indicator across all countries. Common indicators include SP.POP.TOTL (Population), NY.GDP.MKTP.CD (GDP), SP.DYN.IMRT.IN (Infant mortality), SE.ADT.LITR.ZS (Literacy rate).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "country",
+                "all",
+                "indicator",
+                ":indicator_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<string>",
+                  "description": "Date range filter. Single year (2010), range (2010:2020), or monthly (2010M01:2010M12) or quarterly (2010Q1:2010Q4).\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "50",
+                  "description": "Records per page (max 1000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "mrv",
+                  "value": "<integer>",
+                  "description": "Returns the most recent values for the specified number of years"
+                },
+                {
+                  "disabled": false,
+                  "key": "gap_fill",
+                  "value": "<string>",
+                  "description": "Fills missing values with the previous non-empty value when used with mrv"
+                },
+                {
+                  "disabled": false,
+                  "key": "frequency",
+                  "value": "<string>",
+                  "description": "Frequency of returned data (M=monthly, Q=quarterly, Y=yearly)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "indicator_id",
+                  "description": "(Required) World Bank indicator code (e.g., SP.POP.TOTL, NY.GDP.MKTP.CD)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e7026ed2-6ae4-41b9-849e-7814a3904728",
+              "name": "Indicator data for all countries",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "country",
+                    "all",
+                    "indicator",
+                    ":indicator_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    },
+                    {
+                      "key": "mrv",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "gap_fill",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "frequency",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "indicator_id",
+                      "description": "(Required) World Bank indicator code (e.g., SP.POP.TOTL, NY.GDP.MKTP.CD)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"page\": 1,\n    \"pages\": 10,\n    \"per_page\": 50,\n    \"total\": 500,\n    \"sourceid\": \"2\",\n    \"sourcename\": \"World Development Indicators\",\n    \"lastupdated\": \"2024-06-28\"\n  },\n  {\n    \"page\": 1,\n    \"pages\": 10,\n    \"per_page\": 50,\n    \"total\": 500,\n    \"sourceid\": \"2\",\n    \"sourcename\": \"World Development Indicators\",\n    \"lastupdated\": \"2024-06-28\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0470c975-46d7-40cb-a992-c3f0510c5e8b",
+          "name": "Get indicator data for a specific country",
+          "request": {
+            "name": "Get indicator data for a specific country",
+            "description": {
+              "content": "Returns time series data for the specified indicator for a single country. Supports date filtering, pagination, and most-recent-value queries.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "country",
+                ":country_code",
+                "indicator",
+                ":indicator_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<string>",
+                  "description": "Date range filter (single year, range, monthly, or quarterly)"
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "50",
+                  "description": "Records per page (max 1000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "mrv",
+                  "value": "<integer>",
+                  "description": "Most recent values - number of years"
+                },
+                {
+                  "disabled": false,
+                  "key": "frequency",
+                  "value": "<string>",
+                  "description": "Data frequency (M=monthly, Q=quarterly, Y=yearly)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "country_code",
+                  "description": "(Required) ISO 3166-1 country code (e.g., US, USA, CN, CHN, AFG, ALB)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "indicator_id",
+                  "description": "(Required) World Bank indicator code (e.g., SP.POP.TOTL, NY.GDP.MKTP.CD)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed6e4e52-734d-458c-9798-dfcbb6600ea8",
+              "name": "Indicator data for the specified country",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "country",
+                    ":country_code",
+                    "indicator",
+                    ":indicator_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    },
+                    {
+                      "key": "mrv",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "frequency",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "country_code",
+                      "description": "(Required) ISO 3166-1 country code (e.g., US, USA, CN, CHN, AFG, ALB)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "indicator_id",
+                      "description": "(Required) World Bank indicator code (e.g., SP.POP.TOTL, NY.GDP.MKTP.CD)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"page\": 1,\n    \"pages\": 10,\n    \"per_page\": 50,\n    \"total\": 500,\n    \"sourceid\": \"2\",\n    \"sourcename\": \"World Development Indicators\",\n    \"lastupdated\": \"2024-06-28\"\n  },\n  {\n    \"page\": 1,\n    \"pages\": 10,\n    \"per_page\": 50,\n    \"total\": 500,\n    \"sourceid\": \"2\",\n    \"sourcename\": \"World Development Indicators\",\n    \"lastupdated\": \"2024-06-28\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df0777f4-afa0-4ad5-a0ad-85b8d0d10e86",
+          "name": "List all indicators",
+          "request": {
+            "name": "List all indicators",
+            "description": {
+              "content": "Returns a paginated list of all available World Bank indicators with metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indicator"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "50",
+                  "description": "Records per page (max 1000)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "06cf11b1-52e3-4395-9dba-8b359800c4b1",
+              "name": "List of indicators",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"page\": 1,\n    \"pages\": 10,\n    \"per_page\": 50,\n    \"total\": 500,\n    \"sourceid\": \"2\",\n    \"sourcename\": \"World Development Indicators\",\n    \"lastupdated\": \"2024-06-28\"\n  },\n  {\n    \"page\": 1,\n    \"pages\": 10,\n    \"per_page\": 50,\n    \"total\": 500,\n    \"sourceid\": \"2\",\n    \"sourcename\": \"World Development Indicators\",\n    \"lastupdated\": \"2024-06-28\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c29bf2fa-2e9b-459f-9f15-527cfa44f007",
+          "name": "Get indicator metadata",
+          "request": {
+            "name": "Get indicator metadata",
+            "description": {
+              "content": "Returns metadata for a specific indicator including name, source, and topic classification.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "indicator",
+                ":indicator_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "indicator_id",
+                  "description": "(Required) World Bank indicator code (e.g., SP.POP.TOTL)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bcb509e1-f90b-409f-a679-bcefe826f37f",
+              "name": "Indicator metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "indicator",
+                    ":indicator_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "indicator_id",
+                      "description": "(Required) World Bank indicator code (e.g., SP.POP.TOTL)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"page\": 1,\n    \"pages\": 10,\n    \"per_page\": 50,\n    \"total\": 500,\n    \"sourceid\": \"2\",\n    \"sourcename\": \"World Development Indicators\",\n    \"lastupdated\": \"2024-06-28\"\n  },\n  {\n    \"page\": 1,\n    \"pages\": 10,\n    \"per_page\": 50,\n    \"total\": 500,\n    \"sourceid\": \"2\",\n    \"sourcename\": \"World Development Indicators\",\n    \"lastupdated\": \"2024-06-28\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35c7457b-fb07-4ecb-ab56-aefbf9934442",
+          "name": "List indicators by topic",
+          "request": {
+            "name": "List indicators by topic",
+            "description": {
+              "content": "Returns a list of indicators belonging to a specific topic.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "topic",
+                ":topic_id",
+                "indicator"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "50",
+                  "description": "Records per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "topic_id",
+                  "description": "(Required) Topic ID (1-21, e.g., 1=Agriculture, 2=Aid Effectiveness)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "44578cd1-c7f5-41a3-bb13-3f0dda25fe97",
+              "name": "List of indicators for the specified topic",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "topic",
+                    ":topic_id",
+                    "indicator"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "topic_id",
+                      "description": "(Required) Topic ID (1-21, e.g., 1=Agriculture, 2=Aid Effectiveness)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"page\": 1,\n    \"pages\": 10,\n    \"per_page\": 50,\n    \"total\": 500,\n    \"sourceid\": \"2\",\n    \"sourcename\": \"World Development Indicators\",\n    \"lastupdated\": \"2024-06-28\"\n  },\n  {\n    \"page\": 1,\n    \"pages\": 10,\n    \"per_page\": 50,\n    \"total\": 500,\n    \"sourceid\": \"2\",\n    \"sourcename\": \"World Development Indicators\",\n    \"lastupdated\": \"2024-06-28\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.worldbank.org/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "efe4821a-266c-4c18-bad9-df2f0c61ad70",
+    "name": "World Bank Classifications Indicators API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The World Bank Indicators API provides programmatic access to nearly 16,000 time series development indicators. These indicators include data such as total population, gross domestic product, energy use, poverty rates, health metrics, education statistics, and demographic data across countries and regions. Most data series date back over 50 years. No authentication is required. Supports filtering by date range, country, region, income level, and lending type. Returns data in JSON format with pagination support.\n\n\nContact Support:\n Name: World Bank Data Help Desk\n Email: data@worldbank.org",
+      "type": "text/plain"
+    }
+  }
+}
