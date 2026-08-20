@@ -69,6 +69,10 @@ apis:
     https://datahelpdesk.worldbank.org/knowledgebase/articles/889386-developer-information-overview
   baseURL: https://search.worldbank.org/api/v2/projects
   tags:
+  - Project
+  - Loans
+  - Development Finance
+  tags_raw:
   - Projects
   - Operations
   - Loans
