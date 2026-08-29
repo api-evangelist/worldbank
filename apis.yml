@@ -6,6 +6,18 @@ description: >-
   country profiles, financial data, climate information, and project operations.
   All data is freely available under Creative Commons Attribution 4.0 licensing
   with no authentication required for most endpoints.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: open
