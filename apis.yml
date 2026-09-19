@@ -102,6 +102,12 @@ apis:
   tags:
   - Finance
   - Loans
+  - Credit
+  - Budgets
+  - Financial Statements
+  tags_raw:
+  - Finance
+  - Loans
   - Credits
   - Budget
   - Financial Statements
@@ -199,6 +205,8 @@ apis:
   humanURL: https://datahelpdesk.worldbank.org/knowledgebase/articles/889386-developer-information-overview
   baseURL: https://api.worldbank.org/v2
   tags:
+  - Topic
+  tags_raw:
   - Topics
   properties:
   - type: OpenAPI
