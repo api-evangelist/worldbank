@@ -1,12 +1,7 @@
 {
   "provider": "worldbank",
   "sources": [
-    "worldbank-classifications-api-openapi.yml",
-    "worldbank-countries-api-openapi.yml",
-    "worldbank-indicators-api-openapi.yml",
-    "worldbank-regions-api-openapi.yml",
-    "worldbank-sources-api-openapi.yml",
-    "worldbank-topics-api-openapi.yml"
+    "_original/worldbank-indicators-api.yml"
   ],
   "outputs": [
     "worldbank-classifications-api-openapi.yml",
@@ -19,6 +14,23 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "worldbank-indicators-api.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "worldbank-indicators-api.yml: declared missing tag: Classifications",
+    "worldbank-indicators-api.yml: declared missing tag: Countries",
+    "worldbank-indicators-api.yml: declared missing tag: Indicators",
+    "worldbank-indicators-api.yml: declared missing tag: Regions",
+    "worldbank-indicators-api.yml: declared missing tag: Sources",
+    "worldbank-indicators-api.yml: declared missing tag: Topics",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "worldbank-classifications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "worldbank-countries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "worldbank-indicators-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "worldbank-regions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "worldbank-sources-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "worldbank-topics-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

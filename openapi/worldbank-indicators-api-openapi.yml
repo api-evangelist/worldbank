@@ -1,10 +1,8 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 2.0.0
-  title: World Bank Classifications Indicators API
-  description: 'The World Bank Indicators API provides programmatic access to nearly 16,000 time series development indicators. These indicators include data such as total population, gross domestic product, energy use, poverty rates, health metrics, education statistics, and demographic data across countries and regions. Most data series date back over 50 years. No authentication is required. Supports filtering by date range, country, region, income level, and lending type. Returns data in JSON format with pagination support.
-
-    '
+  title: World Bank Indicators API
+  description: The World Bank Indicators API provides programmatic access to nearly 16,000 time series development indicators.
   contact:
     name: World Bank Data Help Desk
     url: https://datahelpdesk.worldbank.org
@@ -21,9 +19,7 @@ paths:
   /country/all/indicator/{indicator_id}:
     get:
       summary: Get indicator data for all countries
-      description: 'Returns time series data for the specified indicator across all countries. Common indicators include SP.POP.TOTL (Population), NY.GDP.MKTP.CD (GDP), SP.DYN.IMRT.IN (Infant mortality), SE.ADT.LITR.ZS (Literacy rate).
-
-        '
+      description: Returns time series data for the specified indicator across all countries. Common indicators include SP.POP.TOTL (Population), NY.GDP.MKTP.CD (GDP), SP.DYN.IMRT.IN (Infant mortality), SE.ADT.LITR.ZS (Literacy rate).
       operationId: getIndicatorAllCountries
       tags:
       - Indicators
@@ -103,9 +99,7 @@ paths:
   /country/{country_code}/indicator/{indicator_id}:
     get:
       summary: Get indicator data for a specific country
-      description: 'Returns time series data for the specified indicator for a single country. Supports date filtering, pagination, and most-recent-value queries.
-
-        '
+      description: Returns time series data for the specified indicator for a single country. Supports date filtering, pagination, and most-recent-value queries.
       operationId: getIndicatorByCountry
       tags:
       - Indicators
@@ -313,86 +307,6 @@ paths:
                       $ref: '#/components/schemas/Indicator'
 components:
   schemas:
-    ClassificationRef:
-      type: object
-      description: Reference to a World Bank classification category
-      properties:
-        id:
-          type: string
-          description: Classification code
-          example: NAC
-        iso2code:
-          type: string
-          description: ISO 2-character code
-          example: XU
-        value:
-          type: string
-          description: Human-readable classification name
-          example: North America
-    Indicator:
-      type: object
-      description: World Bank development indicator metadata
-      properties:
-        id:
-          type: string
-          description: Indicator code
-          example: SP.POP.TOTL
-        name:
-          type: string
-          description: Indicator name
-          example: Population, total
-        unit:
-          type: string
-          description: Unit of measurement
-          example: ''
-        source:
-          $ref: '#/components/schemas/ClassificationRef'
-        sourceNote:
-          type: string
-          description: Methodological notes about the indicator
-        sourceOrganization:
-          type: string
-          description: Organization that collects this data
-          example: (1) United Nations Population Division.
-        topics:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClassificationRef'
-    PaginationData:
-      type: object
-      description: Pagination metadata returned as the first element of the response array
-      properties:
-        page:
-          type: integer
-          description: Current page number
-          example: 1
-        pages:
-          type: integer
-          description: Total number of pages
-          example: 10
-        per_page:
-          type: integer
-          description: Records per page
-          example: 50
-        total:
-          type: integer
-          description: Total number of records
-          example: 500
-        sourceid:
-          type: string
-          nullable: true
-          description: Source identifier
-          example: '2'
-        sourcename:
-          type: string
-          nullable: true
-          description: Source name
-          example: World Development Indicators
-        lastupdated:
-          type: string
-          nullable: true
-          description: Date of last data update
-          example: '2024-06-28'
     IndicatorValue:
       type: object
       description: A single data point for an indicator
@@ -428,8 +342,9 @@ components:
           description: Year or date period of measurement
           example: '2022'
         value:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
           description: Numeric value of the indicator
           example: 335893238
         unit:
@@ -444,6 +359,89 @@ components:
           type: integer
           description: Number of decimal places for display
           example: 0
+    Indicator:
+      type: object
+      description: World Bank development indicator metadata
+      properties:
+        id:
+          type: string
+          description: Indicator code
+          example: SP.POP.TOTL
+        name:
+          type: string
+          description: Indicator name
+          example: Population, total
+        unit:
+          type: string
+          description: Unit of measurement
+          example: ''
+        source:
+          $ref: '#/components/schemas/ClassificationRef'
+        sourceNote:
+          type: string
+          description: Methodological notes about the indicator
+        sourceOrganization:
+          type: string
+          description: Organization that collects this data
+          example: (1) United Nations Population Division.
+        topics:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClassificationRef'
+    ClassificationRef:
+      type: object
+      description: Reference to a World Bank classification category
+      properties:
+        id:
+          type: string
+          description: Classification code
+          example: NAC
+        iso2code:
+          type: string
+          description: ISO 2-character code
+          example: XU
+        value:
+          type: string
+          description: Human-readable classification name
+          example: North America
+    PaginationData:
+      type: object
+      description: Pagination metadata returned as the first element of the response array
+      properties:
+        page:
+          type: integer
+          description: Current page number
+          example: 1
+        pages:
+          type: integer
+          description: Total number of pages
+          example: 10
+        per_page:
+          type: integer
+          description: Records per page
+          example: 50
+        total:
+          type: integer
+          description: Total number of records
+          example: 500
+        sourceid:
+          type:
+          - string
+          - 'null'
+          description: Source identifier
+          example: '2'
+        sourcename:
+          type:
+          - string
+          - 'null'
+          description: Source name
+          example: World Development Indicators
+        lastupdated:
+          type:
+          - string
+          - 'null'
+          description: Date of last data update
+          example: '2024-06-28'
     IndicatorResponse:
       type: array
       description: Standard World Bank API response containing pagination data and indicator values

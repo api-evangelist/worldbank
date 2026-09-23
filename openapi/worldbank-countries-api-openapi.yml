@@ -1,10 +1,8 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 2.0.0
-  title: World Bank Indicators Classifications Countries API
-  description: 'The World Bank Indicators API provides programmatic access to nearly 16,000 time series development indicators. These indicators include data such as total population, gross domestic product, energy use, poverty rates, health metrics, education statistics, and demographic data across countries and regions. Most data series date back over 50 years. No authentication is required. Supports filtering by date range, country, region, income level, and lending type. Returns data in JSON format with pagination support.
-
-    '
+  title: World Bank Indicators Countries API
+  description: The World Bank Indicators API provides programmatic access to nearly 16,000 time series development indicators.
   contact:
     name: World Bank Data Help Desk
     url: https://datahelpdesk.worldbank.org
@@ -21,9 +19,7 @@ paths:
   /country:
     get:
       summary: List countries
-      description: 'Returns a list of countries with geographical and economic classification information. Supports filtering by country code, region, income level, and lending type.
-
-        '
+      description: Returns a list of countries with geographical and economic classification information. Supports filtering by country code, region, income level, and lending type.
       operationId: listCountries
       tags:
       - Countries
@@ -124,44 +120,6 @@ paths:
                       $ref: '#/components/schemas/CountryDetail'
 components:
   schemas:
-    CountryDetail:
-      allOf:
-      - $ref: '#/components/schemas/Country'
-    PaginationData:
-      type: object
-      description: Pagination metadata returned as the first element of the response array
-      properties:
-        page:
-          type: integer
-          description: Current page number
-          example: 1
-        pages:
-          type: integer
-          description: Total number of pages
-          example: 10
-        per_page:
-          type: integer
-          description: Records per page
-          example: 50
-        total:
-          type: integer
-          description: Total number of records
-          example: 500
-        sourceid:
-          type: string
-          nullable: true
-          description: Source identifier
-          example: '2'
-        sourcename:
-          type: string
-          nullable: true
-          description: Source name
-          example: World Development Indicators
-        lastupdated:
-          type: string
-          nullable: true
-          description: Date of last data update
-          example: '2024-06-28'
     Country:
       type: object
       description: World Bank country classification data
@@ -214,3 +172,44 @@ components:
           type: string
           description: Human-readable classification name
           example: North America
+    CountryDetail:
+      allOf:
+      - $ref: '#/components/schemas/Country'
+    PaginationData:
+      type: object
+      description: Pagination metadata returned as the first element of the response array
+      properties:
+        page:
+          type: integer
+          description: Current page number
+          example: 1
+        pages:
+          type: integer
+          description: Total number of pages
+          example: 10
+        per_page:
+          type: integer
+          description: Records per page
+          example: 50
+        total:
+          type: integer
+          description: Total number of records
+          example: 500
+        sourceid:
+          type:
+          - string
+          - 'null'
+          description: Source identifier
+          example: '2'
+        sourcename:
+          type:
+          - string
+          - 'null'
+          description: Source name
+          example: World Development Indicators
+        lastupdated:
+          type:
+          - string
+          - 'null'
+          description: Date of last data update
+          example: '2024-06-28'

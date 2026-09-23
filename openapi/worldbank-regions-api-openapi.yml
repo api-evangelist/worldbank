@@ -1,10 +1,8 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   version: 2.0.0
-  title: World Bank Indicators Classifications Regions API
-  description: 'The World Bank Indicators API provides programmatic access to nearly 16,000 time series development indicators. These indicators include data such as total population, gross domestic product, energy use, poverty rates, health metrics, education statistics, and demographic data across countries and regions. Most data series date back over 50 years. No authentication is required. Supports filtering by date range, country, region, income level, and lending type. Returns data in JSON format with pagination support.
-
-    '
+  title: World Bank Indicators Regions API
+  description: The World Bank Indicators API provides programmatic access to nearly 16,000 time series development indicators.
   contact:
     name: World Bank Data Help Desk
     url: https://datahelpdesk.worldbank.org
@@ -65,22 +63,6 @@ paths:
                       $ref: '#/components/schemas/Region'
 components:
   schemas:
-    Region:
-      type: object
-      description: World Bank geographic region
-      properties:
-        id:
-          type: string
-          description: Region code
-          example: EAS
-        iso2code:
-          type: string
-          description: ISO 2-character region code
-          example: Z4
-        name:
-          type: string
-          description: Region name
-          example: East Asia & Pacific
     PaginationData:
       type: object
       description: Pagination metadata returned as the first element of the response array
@@ -102,17 +84,36 @@ components:
           description: Total number of records
           example: 500
         sourceid:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Source identifier
           example: '2'
         sourcename:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Source name
           example: World Development Indicators
         lastupdated:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Date of last data update
           example: '2024-06-28'
+    Region:
+      type: object
+      description: World Bank geographic region
+      properties:
+        id:
+          type: string
+          description: Region code
+          example: EAS
+        iso2code:
+          type: string
+          description: ISO 2-character region code
+          example: Z4
+        name:
+          type: string
+          description: Region name
+          example: East Asia & Pacific
