@@ -45,6 +45,7 @@ tags:
 - Open Data
 - Country Data
 - Indicators
+- Government Data
 apis:
 - aid: worldbank:worldbank-data-catalog
   name: World Bank Data Catalog API

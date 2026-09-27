@@ -114,50 +114,6 @@ paths:
                       $ref: '#/components/schemas/Indicator'
 components:
   schemas:
-    Indicator:
-      type: object
-      description: World Bank development indicator metadata
-      properties:
-        id:
-          type: string
-          description: Indicator code
-          example: SP.POP.TOTL
-        name:
-          type: string
-          description: Indicator name
-          example: Population, total
-        unit:
-          type: string
-          description: Unit of measurement
-          example: ''
-        source:
-          $ref: '#/components/schemas/ClassificationRef'
-        sourceNote:
-          type: string
-          description: Methodological notes about the indicator
-        sourceOrganization:
-          type: string
-          description: Organization that collects this data
-          example: (1) United Nations Population Division.
-        topics:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClassificationRef'
-    Topic:
-      type: object
-      description: World Bank indicator topic category
-      properties:
-        id:
-          type: string
-          description: Topic identifier
-          example: '1'
-        value:
-          type: string
-          description: Topic name
-          example: Agriculture & Rural Development
-        sourceNote:
-          type: string
-          description: Description of the topic
     PaginationData:
       type: object
       description: Pagination metadata returned as the first element of the response array
@@ -196,6 +152,50 @@ components:
           - 'null'
           description: Date of last data update
           example: '2024-06-28'
+    Topic:
+      type: object
+      description: World Bank indicator topic category
+      properties:
+        id:
+          type: string
+          description: Topic identifier
+          example: '1'
+        value:
+          type: string
+          description: Topic name
+          example: Agriculture & Rural Development
+        sourceNote:
+          type: string
+          description: Description of the topic
+    Indicator:
+      type: object
+      description: World Bank development indicator metadata
+      properties:
+        id:
+          type: string
+          description: Indicator code
+          example: SP.POP.TOTL
+        name:
+          type: string
+          description: Indicator name
+          example: Population, total
+        unit:
+          type: string
+          description: Unit of measurement
+          example: ''
+        source:
+          $ref: '#/components/schemas/ClassificationRef'
+        sourceNote:
+          type: string
+          description: Methodological notes about the indicator
+        sourceOrganization:
+          type: string
+          description: Organization that collects this data
+          example: (1) United Nations Population Division.
+        topics:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClassificationRef'
     ClassificationRef:
       type: object
       description: Reference to a World Bank classification category
