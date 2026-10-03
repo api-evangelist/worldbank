@@ -63,44 +63,6 @@ paths:
                       $ref: '#/components/schemas/Source'
 components:
   schemas:
-    PaginationData:
-      type: object
-      description: Pagination metadata returned as the first element of the response array
-      properties:
-        page:
-          type: integer
-          description: Current page number
-          example: 1
-        pages:
-          type: integer
-          description: Total number of pages
-          example: 10
-        per_page:
-          type: integer
-          description: Records per page
-          example: 50
-        total:
-          type: integer
-          description: Total number of records
-          example: 500
-        sourceid:
-          type:
-          - string
-          - 'null'
-          description: Source identifier
-          example: '2'
-        sourcename:
-          type:
-          - string
-          - 'null'
-          description: Source name
-          example: World Development Indicators
-        lastupdated:
-          type:
-          - string
-          - 'null'
-          description: Date of last data update
-          example: '2024-06-28'
     Source:
       type: object
       description: World Bank data source
@@ -140,3 +102,41 @@ components:
           type: string
           description: Number of concepts in the source
           example: '3'
+    PaginationData:
+      type: object
+      description: Pagination metadata returned as the first element of the response array
+      properties:
+        page:
+          type: integer
+          description: Current page number
+          example: 1
+        pages:
+          type: integer
+          description: Total number of pages
+          example: 10
+        per_page:
+          type: integer
+          description: Records per page
+          example: 50
+        total:
+          type: integer
+          description: Total number of records
+          example: 500
+        sourceid:
+          type:
+          - string
+          - 'null'
+          description: Source identifier
+          example: '2'
+        sourcename:
+          type:
+          - string
+          - 'null'
+          description: Source name
+          example: World Development Indicators
+        lastupdated:
+          type:
+          - string
+          - 'null'
+          description: Date of last data update
+          example: '2024-06-28'

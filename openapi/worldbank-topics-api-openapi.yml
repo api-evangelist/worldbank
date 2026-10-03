@@ -114,6 +114,22 @@ paths:
                       $ref: '#/components/schemas/Indicator'
 components:
   schemas:
+    ClassificationRef:
+      type: object
+      description: Reference to a World Bank classification category
+      properties:
+        id:
+          type: string
+          description: Classification code
+          example: NAC
+        iso2code:
+          type: string
+          description: ISO 2-character code
+          example: XU
+        value:
+          type: string
+          description: Human-readable classification name
+          example: North America
     PaginationData:
       type: object
       description: Pagination metadata returned as the first element of the response array
@@ -152,21 +168,6 @@ components:
           - 'null'
           description: Date of last data update
           example: '2024-06-28'
-    Topic:
-      type: object
-      description: World Bank indicator topic category
-      properties:
-        id:
-          type: string
-          description: Topic identifier
-          example: '1'
-        value:
-          type: string
-          description: Topic name
-          example: Agriculture & Rural Development
-        sourceNote:
-          type: string
-          description: Description of the topic
     Indicator:
       type: object
       description: World Bank development indicator metadata
@@ -196,19 +197,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ClassificationRef'
-    ClassificationRef:
+    Topic:
       type: object
-      description: Reference to a World Bank classification category
+      description: World Bank indicator topic category
       properties:
         id:
           type: string
-          description: Classification code
-          example: NAC
-        iso2code:
-          type: string
-          description: ISO 2-character code
-          example: XU
+          description: Topic identifier
+          example: '1'
         value:
           type: string
-          description: Human-readable classification name
-          example: North America
+          description: Topic name
+          example: Agriculture & Rural Development
+        sourceNote:
+          type: string
+          description: Description of the topic

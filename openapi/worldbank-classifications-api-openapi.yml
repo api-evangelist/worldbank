@@ -146,22 +146,6 @@ components:
           - 'null'
           description: Date of last data update
           example: '2024-06-28'
-    IncomeLevel:
-      type: object
-      description: World Bank income level classification
-      properties:
-        id:
-          type: string
-          description: Income level code
-          example: HIC
-        iso2code:
-          type: string
-          description: ISO 2-character code
-          example: XD
-        value:
-          type: string
-          description: Income level name
-          example: High income
     LendingType:
       type: object
       description: World Bank lending type classification
@@ -178,3 +162,19 @@ components:
           type: string
           description: Lending type name
           example: IBRD
+    IncomeLevel:
+      type: object
+      description: World Bank income level classification
+      properties:
+        id:
+          type: string
+          description: Income level code
+          example: HIC
+        iso2code:
+          type: string
+          description: ISO 2-character code
+          example: XD
+        value:
+          type: string
+          description: Income level name
+          example: High income
