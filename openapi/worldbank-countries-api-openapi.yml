@@ -120,45 +120,6 @@ paths:
                       $ref: '#/components/schemas/CountryDetail'
 components:
   schemas:
-    Country:
-      type: object
-      description: World Bank country classification data
-      properties:
-        id:
-          type: string
-          description: ISO 3166-1 alpha-3 country code
-          example: USA
-        iso2Code:
-          type: string
-          description: ISO 3166-1 alpha-2 country code
-          example: US
-        name:
-          type: string
-          description: Country name
-          example: United States
-        region:
-          $ref: '#/components/schemas/ClassificationRef'
-        adminregion:
-          $ref: '#/components/schemas/ClassificationRef'
-        incomeLevel:
-          $ref: '#/components/schemas/ClassificationRef'
-        lendingType:
-          $ref: '#/components/schemas/ClassificationRef'
-        capitalCity:
-          type: string
-          description: Capital city name
-          example: Washington D.C.
-        longitude:
-          type: string
-          description: Country centroid longitude
-          example: '-95.7129'
-        latitude:
-          type: string
-          description: Country centroid latitude
-          example: '37.0902'
-    CountryDetail:
-      allOf:
-      - $ref: '#/components/schemas/Country'
     PaginationData:
       type: object
       description: Pagination metadata returned as the first element of the response array
@@ -213,3 +174,42 @@ components:
           type: string
           description: Human-readable classification name
           example: North America
+    Country:
+      type: object
+      description: World Bank country classification data
+      properties:
+        id:
+          type: string
+          description: ISO 3166-1 alpha-3 country code
+          example: USA
+        iso2Code:
+          type: string
+          description: ISO 3166-1 alpha-2 country code
+          example: US
+        name:
+          type: string
+          description: Country name
+          example: United States
+        region:
+          $ref: '#/components/schemas/ClassificationRef'
+        adminregion:
+          $ref: '#/components/schemas/ClassificationRef'
+        incomeLevel:
+          $ref: '#/components/schemas/ClassificationRef'
+        lendingType:
+          $ref: '#/components/schemas/ClassificationRef'
+        capitalCity:
+          type: string
+          description: Capital city name
+          example: Washington D.C.
+        longitude:
+          type: string
+          description: Country centroid longitude
+          example: '-95.7129'
+        latitude:
+          type: string
+          description: Country centroid latitude
+          example: '37.0902'
+    CountryDetail:
+      allOf:
+      - $ref: '#/components/schemas/Country'

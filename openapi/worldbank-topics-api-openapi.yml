@@ -114,22 +114,6 @@ paths:
                       $ref: '#/components/schemas/Indicator'
 components:
   schemas:
-    ClassificationRef:
-      type: object
-      description: Reference to a World Bank classification category
-      properties:
-        id:
-          type: string
-          description: Classification code
-          example: NAC
-        iso2code:
-          type: string
-          description: ISO 2-character code
-          example: XU
-        value:
-          type: string
-          description: Human-readable classification name
-          example: North America
     PaginationData:
       type: object
       description: Pagination metadata returned as the first element of the response array
@@ -168,6 +152,22 @@ components:
           - 'null'
           description: Date of last data update
           example: '2024-06-28'
+    ClassificationRef:
+      type: object
+      description: Reference to a World Bank classification category
+      properties:
+        id:
+          type: string
+          description: Classification code
+          example: NAC
+        iso2code:
+          type: string
+          description: ISO 2-character code
+          example: XU
+        value:
+          type: string
+          description: Human-readable classification name
+          example: North America
     Indicator:
       type: object
       description: World Bank development indicator metadata
