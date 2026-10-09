@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 name: World Bank API Plans & Pricing
 description: >-
   World Bank APIs are freely available to developers, researchers, governments,
@@ -42,7 +46,7 @@ plans:
         included: true
 notes:
   - Some datasets may include third-party data with different licensing restrictions
-  - Attribution required for all uses - cite as "The World Bank: [Dataset Name]"
+  - 'Attribution required for all uses - cite as "The World Bank: [Dataset Name]"'
   - World Bank reserves the right to modify or discontinue APIs without notice
   - No SLA or uptime guarantee is provided for API availability
   - Enterprise or bulk data agreements may be available via data@worldbank.org
@@ -51,3 +55,18 @@ contact:
     url: https://datahelpdesk.worldbank.org
     email: data@worldbank.org
 url: https://www.worldbank.org/en/about/legal/terms-of-use-for-datasets
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  units:
+  - period
+  plans:
+  - name: Open Access
+    access: other
+    model: free
+    model_how: derived
+    units:
+    - period
+    periods: []
