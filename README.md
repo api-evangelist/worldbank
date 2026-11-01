@@ -64,36 +64,151 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-World Bank open data platform providing REST APIs for accessing global development
-data including GDP, poverty indicators, health metrics, education statistics,
-country profiles, financial data, climate information, and project operations.
-All data is freely available under Creative Commons Attribution 4.0 licensing
-with no authentication required for most endpoints.
+World Bank open data platform providing REST APIs for accessing global development data including GDP, poverty indicators, health metrics, education statistics, country profiles, financial data, climate information, and project operations. All data is freely available under Creative Commons Attribution 4.0 licensing with no authentication required for most endpoints.
 
-## APIs
+**Areas:** Development Data · Global Economics · GDP · Poverty · Health Metrics · Education · Climate · Finance · World Bank · Open Data · Country Data · Indicators
 
-- **Indicators API** - Nearly 16,000 time series development indicators (GDP, poverty, health, education) at `https://api.worldbank.org/v2`
-- **Data Catalog API** - Browse and download thousands of development datasets at `https://datacatalogapi.worldbank.org`
-- **Projects API** - Active, pipeline, and closed World Bank project operations at `https://search.worldbank.org/api/v2/projects`
-- **Finances API** - Loans, credits, trust funds, and budget data at `https://datacatalogapi.worldbank.org/dexapps/fone/api`
-- **SDMX API** - World Development Indicators in SDMX standard format at `https://api.worldbank.org/v2/sdmx/rest`
+## World Bank on APIs.io
 
-## Resources
+Everything profiled for World Bank is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/worldbank/](https://apis.io/providers/worldbank/)** — or go straight to one of the APIs or properties below.
 
-- [Developer Documentation](https://datahelpdesk.worldbank.org/knowledgebase/articles/889386-developer-information-overview)
-- [API Basic Call Structures](https://datahelpdesk.worldbank.org/knowledgebase/articles/898581-api-basic-call-structures)
-- [Data Catalog](https://datacatalog.worldbank.org)
-- [GitHub Organization](https://github.com/worldbank)
-- [Open Data Blog](https://blogs.worldbank.org/opendata)
-- [Terms of Use](https://www.worldbank.org/en/about/legal/terms-of-use-for-datasets)
+### APIs (11)
 
-## Licensing
+- [World Bank Data Catalog API](https://apis.io/apis/worldbank/worldbank-data-catalog/) — Provides information about thousands of development-relevant datasets available through the World Bank Data Catalog. Supports searching, listing, viewing…
+- [World Bank Projects API](https://apis.io/apis/worldbank/worldbank-projects/) — Provides access to World Bank operations data including active, pipeline, and closed projects. Returns project details including financial commitments,…
+- [World Bank Finances API](https://apis.io/apis/worldbank/worldbank-finances/) — Provides programmatic access to World Bank financial data including loans, credits, trust funds, budget data, and financial statements. Delivered through…
+- [World Bank SDMX API](https://apis.io/apis/worldbank/worldbank-sdmx/) — Provides access to World Bank development data in SDMX (Statistical Data and Metadata eXchange) format, the international standard for statistical data…
+- [World Bank Classifications API](https://apis.io/apis/worldbank/worldbank-classifications-api/) — The Classifications API from World Bank — 2 operation(s) for classifications.
+- [World Bank Countries API](https://apis.io/apis/worldbank/worldbank-countries-api/) — The Countries API from World Bank — 2 operation(s) for countries.
+- [World Bank Indicators API](https://apis.io/apis/worldbank/worldbank-indicators-api/) — The Indicators API from World Bank — 5 operation(s) for indicators.
+- [World Bank Regions API](https://apis.io/apis/worldbank/worldbank-regions-api/) — The Regions API from World Bank — 1 operation(s) for regions.
+- [World Bank Sources API](https://apis.io/apis/worldbank/worldbank-sources-api/) — The Sources API from World Bank — 1 operation(s) for sources.
+- [World Bank Topics API](https://apis.io/apis/worldbank/worldbank-topics-api/) — The Topics API from World Bank — 2 operation(s) for topics.
+- [World Bank](https://apis.io/apis/worldbank/world-bank/) — World Data
 
-Data is provided under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
-Attribution format: `The World Bank: [Dataset Name]: [Data Source]`
+### Published properties
 
-## Contact
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- Help Desk: https://datahelpdesk.worldbank.org
-- Email: data@worldbank.org
-- X: [@worldbankdata](https://x.com/worldbankdata)
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Worldbank Agentic Access](https://apis.io/agentic-access/worldbank/worldbank-agentic-access/)
+
+#### JSON Schema (3)
+
+The data models the API reads and writes.
+
+- [Country](https://apis.io/schemas/worldbank/country/)
+- [IndicatorValue](https://apis.io/schemas/worldbank/indicator-value/)
+- [PaginationData](https://apis.io/schemas/worldbank/pagination/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Worldbank Context](https://apis.io/jsonld/worldbank/worldbank-context/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [World Bank Indicators Classifications API](https://apis.io/collections/worldbank/open-worldbank-classifications-api/)
+- [World Bank Indicators Classifications Countries API](https://apis.io/collections/worldbank/open-worldbank-countries-api/)
+- [World Bank Classifications Indicators API](https://apis.io/collections/worldbank/open-worldbank-indicators-api/)
+- [World Bank Indicators Classifications Regions API](https://apis.io/collections/worldbank/open-worldbank-regions-api/)
+- [World Bank Indicators Classifications Sources API](https://apis.io/collections/worldbank/open-worldbank-sources-api/)
+- [World Bank Indicators Classifications Topics API](https://apis.io/collections/worldbank/open-worldbank-topics-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [World Bank — jsonschema rules](https://apis.io/rules/worldbank/worldbank-jsonschema-spectral-rules/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Worldbank Domain Security](https://apis.io/security/worldbank/worldbank-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Worldbank Plans Pricing](https://apis.io/plans/worldbank/worldbank-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Worldbank Rate Limits](https://apis.io/rate-limits/worldbank/worldbank-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Worldbank Finops](https://apis.io/finops/worldbank/worldbank-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://data.worldbank.org)
+- [Documentation](https://datahelpdesk.worldbank.org/knowledgebase/articles/889386-developer-information-overview)
+- [Pricing](https://www.worldbank.org/en/about/legal/terms-of-use-for-datasets)
+- [Blog](https://blogs.worldbank.org/opendata)
+
+## API Evangelist rating
+
+**Kin Score 27.5** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 51.3 |
+| Contract governance | 9.8 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 11.9 |
+| Access clarity | 15.8 |
+
+**Agent readiness 17.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.8** — Government & Public Sector
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/worldbank/](https://apis.io/providers/worldbank/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for World Bank: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/worldbank/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
